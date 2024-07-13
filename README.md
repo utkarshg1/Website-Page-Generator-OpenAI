@@ -1,7 +1,3 @@
-Certainly! Here's a concise `README.md` for a project where you dynamically generate and save a single-page website using HTML, CSS, JavaScript, and the OpenAI API client:
-
----
-
 # Dynamic Single Page Website Generator
 
 This project demonstrates the generation and saving of a single-page website using HTML, CSS, JavaScript, and the OpenAI API client.
