@@ -3,124 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Science Classes</title>
+    <title>Banking Organization</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
             color: #343a40;
         }
-
-        .navbar {
-            background-color: #343a40;
-        }
-
-        .navbar-brand, .nav-link {
-            color: #ffffff !important;
-        }
-
-        .jumbotron {
-            background: linear-gradient(135deg, #6d5bde 0%, #3a47d5 100%);
-            color: white;
+        .hero-section {
+            padding: 100px 0;
+            background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(0,123,255,0.8) 100%);
+            color: #fff;
             text-align: center;
-            padding: 2rem;
+            animation: fadeIn 2s ease-in-out;
         }
-
-        .section-title {
-            margin-top: 2rem;
+        .hero-section h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero-section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .features {
+            padding: 50px 0;
+        }
+        .feature {
             text-align: center;
-            animation: fadeIn 2s ease;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
         }
-
-        .card {
-            margin: 1rem;
-            transition: transform 0.3s;
+        .feature:hover {
+            transform: scale(1.1);
         }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">Data Science Classes</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Courses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
+    <header class="hero-section">
+        <div class="container">
+            <h1>Welcome to XYZ Bank</h1>
+            <p>Your trusted partner in financial success.</p>
+            <a href="#" class="btn btn-light btn-lg">Get Started</a>
         </div>
-    </nav>
-
-    <div class="jumbotron">
-        <h1 class="display-4">Welcome to Data Science Classes</h1>
-        <p class="lead">Master Data Science with our expert-led courses and hands-on practice.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
-    </div>
-
-    <div class="container">
-        <h2 class="section-title">Our Popular Courses</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Data Science Fundamentals</h5>
-                        <p class="card-text">Learn the basics of data science, including data analysis, visualization, and machine learning.</p>
-                        <a href="#" class="btn btn-primary">Enroll Now</a>
-                    </div>
+    </header>
+    <section class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 feature">
+                    <h3>Secure Banking</h3>
+                    <p>Experience the highest level of security for your banking needs.</p>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Advanced Machine Learning</h5>
-                        <p class="card-text">Dive deep into advanced machine learning algorithms and techniques.</p>
-                        <a href="#" class="btn btn-primary">Enroll Now</a>
-                    </div>
+                <div class="col-md-4 feature">
+                    <h3>Easy Loans</h3>
+                    <p>Get loans with minimal interest rates and flexible repayment options.</p>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Big Data Analytics</h5>
-                        <p class="card-text">Explore big data technologies and learn how to handle large datasets efficiently.</p>
-                        <a href="#" class="btn btn-primary">Enroll Now</a>
-                    </div>
+                <div class="col-md-4 feature">
+                    <h3>24/7 Support</h3>
+                    <p>Our support team is available round the clock to assist you.</p>
                 </div>
             </div>
         </div>
-    </div>
-
-    <footer class="text-center mt-4 py-4">
-        <p>&copy; 2023 Data Science Classes. All rights reserved.</p>
+    </section>
+    <footer class="text-center p-4">
+        <p>&copy; 2023 XYZ Bank. All rights reserved.</p>
     </footer>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

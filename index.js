@@ -34,9 +34,9 @@ async function main() {
         {
           role: "user",
           content:
-            "Generate a front page for Data Science Classes Website. \
+            "Generate a front page for a Banking Organization. \
             Make it beautiful use bootstrap also add some cool animations. \
-            Avoid adding any images. Please provide only HTML code",
+            Avoid adding any images.",
         },
       ],
       temperature: 0.7,
