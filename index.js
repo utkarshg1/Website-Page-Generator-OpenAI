@@ -1,25 +1,54 @@
 import "dotenv/config";
 import OpenAI from "openai";
 import fs from "fs";
+import readline from "readline";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+// Function to clean the response (removes triple backticks if present)
+function cleanHTMLResponse(htmlContent) {
+  return htmlContent.replace(/^```html\s*|```$/g, "").trim();
+}
+
 // Function to save HTML content to a file
 function saveResponseToHTML(htmlContent, filePath) {
-    fs.writeFile(filePath, htmlContent, (err) => {
-        if (err) {
-            console.error('Error:', err);
-        } else {
-            console.log(`HTML content saved to ${filePath}`);
-        }
+  const cleanedHTML = cleanHTMLResponse(htmlContent);
+  fs.writeFile(filePath, cleanedHTML, (err) => {
+    if (err) {
+      console.error("Error:", err);
+    } else {
+      console.log(`\nHTML content saved to ${filePath}`);
+    }
+  });
+}
+
+// Function to take user input
+function askQuestion(query) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(query, (answer) => {
+      rl.close();
+      resolve(answer);
     });
+  });
 }
 
 async function main() {
-  const chunks = [];
   try {
+    const userPrompt = await askQuestion("Enter your webpage description: ");
+
+    if (!userPrompt.trim()) {
+      console.error("Error: You must provide a description.");
+      return;
+    }
+
+    const chunks = [];
     const stream = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
@@ -27,30 +56,32 @@ async function main() {
           role: "system",
           content:
             "Your goal is to write a single webpage in HTML, CSS and JS \
-            use internal CSS and JS inside HTML. Give Me HTML Code only. \
-            I do not want any explaination. I am going to save this response to \
-            somefile.html so please dont provide any backticks and extra things i want HTML content Only.",
+            using internal CSS and JS inside HTML. Use Bootstrap for styling and \
+            add cool animations. Give me the HTML code only. \
+            I do not want any explanations. I will save this response to \
+            somefile.html, so please do not provide any backticks or extra text. \
+            I want only the HTML content.",
         },
         {
           role: "user",
-          content:
-            "Generate a front page for a Banking Organization. \
-            Make it beautiful use bootstrap also add some cool animations. \
-            Avoid adding any images.",
+          content: userPrompt,
         },
       ],
       temperature: 0.7,
       stream: true,
     });
+
     for await (const chunk of stream) {
       var c = chunk.choices[0]?.delta?.content || "";
       chunks.push(c);
       process.stdout.write(c);
     }
-    const completeResponse = chunks.join('');
+
+    const completeResponse = chunks.join("");
     saveResponseToHTML(completeResponse, "generated_file.html");
   } catch (error) {
     console.error("Error:", error);
   }
 }
+
 main();
